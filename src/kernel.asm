@@ -32,7 +32,8 @@ _start:
     ; End remap of master PIC
 
     ; Enable interrupts
-    sti
+    ; sti       ;; DANGEROUS - IDT is not set yet, system will panic
+                ;; if there is an interrupt here - made a function
 
     call kernel_main
     jmp $
