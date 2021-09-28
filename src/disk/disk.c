@@ -11,7 +11,7 @@ int disk_read_sector(int lba, int total, void* buf) {
     outb(0x1f6, (lba >> 24) | 0xE0);
     outb(0x1f2, total);
     outb(0x1f3, (unsigned char) (lba & 0xff));
-    outb(0x1f4, (unsigned char)(lba >> 4));
+    outb(0x1f4, (unsigned char)(lba >> 8));
     outb(0x1f5, (unsigned char)(lba >> 16));
     outb(0x1f7, 0x20);
 
@@ -38,6 +38,7 @@ void disk_search_and_init() {
     memset(&disk, 0, sizeof(disk));
     disk.type = PEACHOS_DISK_TYPE_REAL;
     disk.sector_size = PEACHOS_SECTOR_SIZE;
+    disk.id = 0;
     disk.filesystem = fs_resolve(&disk);
 
 }
