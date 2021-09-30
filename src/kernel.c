@@ -89,18 +89,11 @@ void kernel_main() {
     int fd = fopen("0:/hello.txt", "r");
 
     if (fd) {
-        print("We opened hello.txt\n");
-    }
-    else {
-        print("we could NOT open hello.txt\n");
-    }
-
-    fd = fopen("0:/hello2.txt", "r");
-    if (fd) {
-        print("We opened hello2.txt\n");
-    }
-    else {
-        print("We could NOT open hello2.txt\n");
+        print("\nWe opened hello.txt\n");
+        char buf[14];
+        fread(buf, 13, 1, fd);
+        buf[13] = 0x00;
+        print(buf);
     }
 
     while (1) {}
