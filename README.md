@@ -29,7 +29,7 @@ And in gdb, attach the kernelfull.o symbol file and start debugging
 ```
 add-symbol-file ../build/kernelfull.o 0x100000
 ```
-type y for yes
+```y``` for yes
 ```
 target remote | qemu-system-i386 -hda ./os.bin -S -gdb stdio
 ```
