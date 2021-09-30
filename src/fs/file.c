@@ -134,13 +134,13 @@ int fopen(const char* filename, const char* mode_str) {
     }
 
     FILE_MODE mode = file_get_mode_by_string(mode_str);
-    if (!mode) {        // r, w, or a was not passed
+    if (mode == FILE_MODE_INVALID) {        // r, w, or a was not passed
         res = -EINVARG;
         goto out;
     }
 
     void* descriptor_private_data = disk->filesystem->open(disk, root_path->first, mode);
-    if (ISER(descriptor_private_data)) {
+    if (ISERR(descriptor_private_data)) {
         res = ERROR_I(descriptor_private_data);
         goto out;
     }
