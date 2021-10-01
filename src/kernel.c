@@ -58,6 +58,11 @@ void print(const char* str) {
 
 static struct paging_4gb_chunk* kernel_chunk = 0;
 
+void panic (const char* msg) {
+    print (msg);
+    while(1) {}
+}
+
 void kernel_main() {
     terminal_initialize();
     print("Hello World!\nI am Manikandan\n");
@@ -87,13 +92,12 @@ void kernel_main() {
     enable_interrupts();
 
     int fd = fopen("0:/hello.txt", "r");
-
     if (fd) {
-        print("\nWe opened hello.txt\n");
-        char buf[14];
-        fread(buf, 13, 1, fd);
-        buf[13] = 0x00;
-        print(buf);
+        struct file_stat s;
+        fstat(fd, &s);
+        fclose(fd);
+
+        print("testing, closed?\n");
     }
 
     while (1) {}
