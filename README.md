@@ -1,6 +1,6 @@
 # PeachOS
 
-A simple kernel (written in C and assembly) designed for the Intel x86 family of processors
+A bootloader and kernel (written in C and assembly) designed for the intel x86 family of processors
 
 I am maintaining this repository as I follow Daniel McCarthy's Udemy Course - "Developing a Multithreaded Kernel From Scratch!"
 
@@ -33,5 +33,5 @@ add-symbol-file ../build/kernelfull.o 0x100000
 ```
 target remote | qemu-system-i386 -hda ./os.bin -S -gdb stdio
 ```
-Add break point if any
+Add break point if any  
 ```c``` to continue, ```next``` for stepping instructions, ```print <var>``` for printing variables
